@@ -1,0 +1,33 @@
+In order to collect data from more than 50 sensors,  storage it in a USB and use it in real time to get a better performance of the car, a hardware architecture with different PCBs is created thanks to JLCPCB.
+
+Auxiliar Modules (RM, FM):
+This type of PCB is in charge of collecting the data from the sensors with acquisition circuits,  save the information in variables and send it by CAN to the rest of the modules. We usually use 2 of them in the car at the same time. The capabilities are:
+-4 Analog sensor
+-Current sensor
+-4 Thermocouple sensor
+-CAN communication
+-USART, SPI and I2C communication buses
+
+Central Module (CM):
+This PCB has two different parts. One of them is in charge of the acquisition part, receiving the data from the auxiliar modules by CAN and storage it at high speed in a USB. The other part is in charge of the Driver Aid system getting a better performance of the car helping the driver with launch control, traction control, shifting... Etc.
+The characteristics are:
+-CAN communication
+-Fail safe circuit. If this module fails the car can continue to be driven. (without Driver Aids)
+-Integrated IMU sensor
+-Power supply for the auxiliar modules (12V to 5V and 12V to 3,3V converters)
+-Wheel speed Digital acquisition
+-USB module
+-Power control module (Some actuators like electrovalves or fans are controlled with mosfet in the central module)
+
+
+Actuator Modules (AM):
+This PCBs have Been designed to control the actuators of the car like servos, electromagnetic pistons etc. This control depends on the input they receive by a Digital or Analog bus. They count with a CAN communication circuit and a dedicated power converter for the actuators
+
+Brake System Plausibility Device (BSPD) :
+Formula Student Competition rules has a lot of requirements regarding the security of the car. One of these requirements is a PCB in charge of stop the engine if the driver press the Brake and the throttle at the same time for more than 500 miliseconds. When this happens, a relay open the circuit use by the engine to work.
+
+Electric Throttle Control (ETC):
+Like the previous PCB, it has to control that the signals from the electronic throttle of the engine are in the correct range. If one or more of these signals go off the range for a determined time the engine will be stopped.
+
+Emergency Brake System (EBS):
+In order to ensure that our autonomous prototype can perform a safe stopping maneuver anytime, an emergency brake system is designed so that if any system critical signal fails or power is lost, a normally open relay activates an electrovalve, which triggers the pneumatic actuator that make the car brake at its maximum capabilities until a safe state is reached.
